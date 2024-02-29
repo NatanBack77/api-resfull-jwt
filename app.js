@@ -1,6 +1,5 @@
 require("dotenv").config();
 const express = require("express");
-const jwt = require("jsonwebtoken");
 const Mongoose = require("mongoose");
 const router = require("./routes/api");
 const app = express();
@@ -21,11 +20,9 @@ const DB_PASSWORD = encodeURIComponent(process.env.DB_PASSWORD);
 
 Mongoose.connect(
 	`mongodb+srv://${DB_USER}:${DB_PASSWORD}@api-test.kggokoq.mongodb.net/?retryWrites=true&w=majority`,
-)
-	.then(() => {
+).then(() => {
 		console.log("conectamos com sucesso ");
-		app.listen(3000);
-	})
-	.catch((error) => {
+		app.listen(3001, ()=>{console.log("deu certo a porta")});
+	}).catch((error) => {
 		console.log(error);
 	});
